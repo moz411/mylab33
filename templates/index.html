@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>MYLAB33</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="icon" type="image/png" href="/static/img/favicon.png" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/screen.css" />
+    <link rel="stylesheet" href="/static/css/grt-youtube-popup.css" />
+
+</head>
+<body>
+<div class="page-wrapper">
+	<header id="top">
+	<div class="w3-top topbar">
+		<div id="w3-quarter"><a href="#contacts"><img src="/static/img/logo.png"  style="max-width:10em" /></a></div>
+	</div>
+	</header>
+
+
+	<main>
+
+		<!--  Contacts  -->
+		<section class="w3-row pad500" id="contacts">
+
+		{%- for contact in contacts %}
+		<div class="w3-container w3-half">
+				<div class="w3-content w3-card" style="max-width:30em">
+					<a class="nav" href="{{contact.href}}">
+					<h4><b>{{contact.name}}</b></h4>
+					<p>{{contact.description}}</p>
+					<div class="w3-display-container">
+						<img src="{{contact.image}}"  style="width:100%" alt="{{contact.name}}">
+						<div class="display-bottom w3-display-hover w3-animate-opacity w3-padding-small">{{contact.story}}</div>
+						<div class="display-all w3-black w3-opacity w3-display-hover"></div>
+					</div>
+					</a>
+					<div class="w3-container w3-padding-large">
+					{% for icon in contact.icons %}
+						<div class="w3-quarter w3-center"><a href="{{icon.href}}"><i class="{{icon.name}} icon"  title="{{icon.alt}}"></i></a></div>
+					{% endfor %}
+					</div>
+				</div>
+		</div>
+		{% endfor %}
+		</section>
+
+		<!--  Graphic Design  -->
+	    <section class="w3-row pad500" id="design">
+
+	    <div class="w3-col m6 w3-margin-top" >
+            <div class="w3-row w3-display-container">
+				<div id="img1">
+					{% for item in articles[0].images %}
+						<img src={{item.path}} />
+					{% endfor %}
+				</div>
+				<div class="display-top w3-display-hover w3-animate-opacity">{{articles[0].title}}</div>
+				<div class="display-bottom w3-display-hover w3-animate-opacity w3-padding-small">{{articles[0].description}}</div>
+            <div class="display-all w3-black w3-opacity w3-display-hover"></div>
+            </div>
+            <div class="w3-row w3-display-container">
+				<div id="img2">
+					{% for item in articles[1].images %}
+						<img src={{item.path}} />
+					{% endfor %}
+				</div>
+				<div class="display-top w3-display-hover w3-animate-opacity">{{articles[1].title}}</div>
+				<div class="display-bottom w3-display-hover w3-animate-opacity w3-padding-small">{{articles[1].description}}</div>
+				<div class="display-all w3-black w3-opacity w3-display-hover"></div>
+            </div>
+    	</div>
+
+
+        <div class="w3-col m6 w3-display-container">
+			<div id="img3">
+				{% for item in articles[2].images %}
+					<img src={{item.path}} />
+				{% endfor %}
+			</div>
+			<div class="display-top w3-display-hover w3-animate-opacity">{{articles[2].title}}</div>
+			<div class="display-bottom w3-display-hover w3-animate-opacity w3-padding-small">{{articles[2].description}}</div>
+			<div class="display-all w3-black w3-opacity w3-display-hover"></div>
+        </div>
+
+	    </section>
+
+		<!--  Data Science  -->
+		<section class="w3-row pad500" id="science">
+
+		{% for item in projets %}
+		<div class="w3-col w3-third w3-padding-large">
+			<div class="w3-container w3-center"><a href="{{item.href}}">{{item.name}}</a></div>
+			<div class="w3-container w3-center"><a href="{{item.href}}">{{item.description}}</a></div>
+			<span class="youtube-link" youtubeid="{{item.video}}" start="{{item.start}}">
+				<img src="http://img.youtube.com/vi/{{item.video}}/mqdefault.jpg" height="100%" width="100%" />
+			</span>
+			{% if item.href2 %}<div class="w3-container w3-center"><a href="{{item.href2}}">{{item.description2}}</a></div>{% endif %}
+		</div>
+		{% endfor %}
+
+		{% for item in divers %}
+		<div class="w3-col w3-third w3-padding-large">
+			<div class="w3-container w3-center">
+			<a href="{{item.href}}">{{item.titre}}<img src="{{item.image}}" height="100%" width="100%" /></a></div>
+		</div>
+		{% endfor %}
+		</section>
+
+	</main>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/static/js/fadeSlideShow.js"></script>
+	<script src="/static/js/reloadwithtimer.js"></script>
+	<script src="/static/js/smoothScrolling.js"></script>
+	<script src="/static/js/grt-youtube-popup.js"></script>
+	<script>$(".youtube-link").grtyoutube();</script>
+</div>
+</body>
+</html>
